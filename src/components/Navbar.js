@@ -28,16 +28,18 @@ const Navbar = () => {
 
     return (
         <header className={cn(
-            "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-            isScrolled ? "bg-black/80 backdrop-blur-md py-4 shadow-lg border-b border-brand/20" : "bg-transparent py-6"
+            "fixed top-0 left-0 w-full z-50 h-16 md:h-20 transition-all duration-300",
+            isScrolled ? "bg-black/80 backdrop-blur-md shadow-lg border-b border-brand/20" : "bg-transparent"
         )}>
-            <div className="container mx-auto px-4 flex items-center justify-between">
-                <Link href="/" className="relative w-32 h-10">
+            <div className="container mx-auto px-4 h-full flex items-center justify-between">
+                <Link href="/" className="relative h-10 w-auto md:h-12 flex-shrink-0">
                     <Image
                         src="/images/logo.webp"
                         alt="CyCity Logo"
-                        fill
-                        className="object-contain"
+                        width={200}
+                        height={48}
+                        className="h-full w-auto object-contain"
+                        priority
                     />
                 </Link>
 
@@ -69,7 +71,7 @@ const Navbar = () => {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden text-white hover:text-brand transition-colors"
+                    className="md:hidden text-white hover:text-brand transition-colors z-[70] flex-shrink-0"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -78,7 +80,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             <div className={cn(
-                "fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center space-y-8 transition-transform duration-500 md:hidden",
+                "fixed inset-0 bg-black/95 z-[60] flex flex-col items-center justify-center space-y-8 transition-transform duration-500 md:hidden",
                 isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
             )}>
                 {navLinks.map((link) => (

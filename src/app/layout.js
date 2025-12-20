@@ -9,11 +9,11 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "CyCity Int Pvt Ltd | Redefining Intelligence",
+  title: "CyCity Int Pvt Ltd",
   description: "Cycity International Private Limited is an Indian deep-tech company advancing Artificial General Intelligence (AGI) through Quantum Technology.",
-  icons: {
-    icon: "/images/icon.webp",
-  },
+  // icons: {
+  //   icon: "icon.webp",
+  // },
 };
 
 export default function RootLayout({ children }) {
