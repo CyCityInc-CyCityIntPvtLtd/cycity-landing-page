@@ -66,11 +66,68 @@
 
   html {
     scroll-behavior: smooth;
+    /* Prevent zoom on iOS */
+    -webkit-text-size-adjust: 100%;
+    /* Better mobile viewport handling */
+    height: 100%;
+    /* Fallback for older browsers */
+    height: 100vh;
+    /* Modern browsers with dynamic viewport */
+    height: 100dvh;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
+    /* Enhanced protection against right-click and extensions */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    /* Block drag and drop */
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    /* Disable context menu */
+    -webkit-context-menu: none;
+    /* Disable text selection on mobile */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Better mobile handling */
+    height: 100%;
+    /* Fallback for older browsers */
+    height: 100vh;
+    /* Modern browsers with dynamic viewport */
+    height: 100dvh;
+    overflow: hidden;
+    /* Prevent overscroll bounce on iOS */
+    overscroll-behavior: none;
+    /* Improve touch scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* Fix for iOS Safari address bar */
+    position: fixed;
+    width: 100%;
+  }
+
+  /* Enhanced protection for all elements */
+  * {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    -khtml-user-drag: none !important;
+    -moz-user-drag: none !important;
+    -o-user-drag: none !important;
+    user-drag: none !important;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -97,6 +154,34 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary) / 0.5);
+  }
+
+  /* Disable image dragging */
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+  }
+
+  /* Re-enable pointer events for interactive elements */
+  button, a, input, textarea, select {
+    pointer-events: auto;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+
+  /* Disable drag for buttons and links */
+  button, a {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
   }
 }
 
@@ -169,20 +254,21 @@
     @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
   }
 
+  /* Mobile-first responsive typography */
   .heading-xl {
-    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight;
   }
 
   .heading-lg {
-    @apply text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
   }
 
   .heading-md {
-    @apply text-2xl sm:text-3xl font-semibold;
+    @apply text-xl sm:text-2xl md:text-3xl font-semibold;
   }
 
   .body-lg {
-    @apply text-lg md:text-xl text-muted-foreground leading-relaxed;
+    @apply text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed;
   }
 
   .marquee {
@@ -224,6 +310,108 @@
   }
   .animation-delay-800 {
     animation-delay: 800ms;
+  }
+
+  /* Scrollbar utilities */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .line-clamp-4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  /* Mobile touch improvements */
+  .touch-pan-y {
+    touch-action: pan-y;
+  }
+
+  .touch-none {
+    touch-action: none;
+  }
+
+  /* Mobile safe area utilities */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Mobile viewport utilities */
+  .h-screen-mobile {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .min-h-screen-mobile {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  /* Better mobile scrolling */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Mobile-optimized glass effect */
+  @media (max-width: 768px) {
+    .glass {
+      @apply backdrop-blur-lg;
+      background: hsl(var(--card) / 0.8);
+    }
+    
+    .glass-dark {
+      @apply backdrop-blur-xl;
+      background: hsl(0 0% 4% / 0.9);
+    }
+  }
+
+  /* iOS Safari specific fixes */
+  @supports (-webkit-touch-callout: none) {
+    .ios-fix {
+      height: -webkit-fill-available;
+    }
+  }
+
+  /* Android Chrome specific fixes */
+  @media screen and (max-width: 768px) {
+    .android-fix {
+      height: calc(100vh - env(keyboard-inset-height, 0px));
+    }
   }
 }
 

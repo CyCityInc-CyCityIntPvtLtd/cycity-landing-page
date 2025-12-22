@@ -1,21 +1,31 @@
 import { motion } from 'framer-motion';
-import { ParticleField } from '../../three/ParticleField';
+import { GalaxyScene } from '../../three/GalaxyScene';
 
-export function CinematicHero() {
+interface CinematicHeroProps {
+  onNavigate?: (index: number) => void;
+}
+
+export function CinematicHero({ onNavigate }: CinematicHeroProps) {
+  const handleScrollToExplore = () => {
+    if (onNavigate) {
+      onNavigate(1); // Navigate to Quantum section (index 1)
+    }
+  };
+
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-background">
-      <ParticleField />
+      <GalaxyScene />
       
       <div className="absolute inset-0 bg-hero-gradient pointer-events-none" />
       
-      <div className="relative z-10 container-custom text-center">
+      <div className="relative z-10 container-custom text-center px-4 py-8 lg:py-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6"
+          className="mb-4 lg:mb-6"
         >
-          <span className="inline-block px-4 py-2 text-sm font-orbitron font-medium tracking-[0.3em] text-primary border border-primary/30 rounded-full uppercase">
+          <span className="inline-block px-3 lg:px-4 py-1.5 lg:py-2 text-xs lg:text-sm font-orbitron font-medium tracking-[0.3em] text-primary border border-primary/30 rounded-full uppercase">
             Perpetual Innovations
           </span>
         </motion.div>
@@ -24,7 +34,7 @@ export function CinematicHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="heading-xl mb-8"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 lg:mb-8"
         >
           <span className="text-foreground">Redefining Intelligence.</span>
           <br />
@@ -36,23 +46,31 @@ export function CinematicHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="body-lg max-w-2xl mx-auto mb-12"
+          className="text-base lg:text-lg xl:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 lg:mb-12"
         >
-          <span className="flex items-center justify-center gap-4">
-            <span className="h-px w-12 bg-primary/50" />
+          <span className="flex items-center justify-center gap-3 lg:gap-4">
+            <span className="h-px w-8 lg:w-12 bg-primary/50" />
             Join The Matrix Of Innovation
-            <span className="h-px w-12 bg-primary/50" />
+            <span className="h-px w-8 lg:w-12 bg-primary/50" />
           </span>
         </motion.p>
 
-        <motion.div
+        <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="text-muted-foreground text-sm font-orbitron tracking-wider"
+          onClick={handleScrollToExplore}
+          className="text-muted-foreground text-xs lg:text-sm font-orbitron tracking-wider hover:text-primary transition-colors duration-300 cursor-pointer group"
+          aria-label="Navigate to Quantum section"
         >
-          <span className="animate-pulse">↓</span> Scroll to explore
-        </motion.div>
+          <motion.span 
+            className="animate-pulse text-gradient-lime glow-text group-hover:scale-110 transition-transform duration-300 inline-block"
+            whileHover={{ y: -2 }}
+            whileTap={{ y: 0 }}
+          >
+            ↓ Scroll to Explore
+          </motion.span>
+        </motion.button>
       </div>
     </div>
   );

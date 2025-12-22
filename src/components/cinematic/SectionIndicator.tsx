@@ -5,12 +5,21 @@ interface SectionIndicatorProps {
   currentSection: number;
   sectionNames: string[];
   onNavigate: (index: number) => void;
+  isMobile?: boolean;
 }
 
-export function SectionIndicator({ totalSections, currentSection, sectionNames, onNavigate }: SectionIndicatorProps) {
+export function SectionIndicator({ totalSections, currentSection, sectionNames, onNavigate, isMobile = false }: SectionIndicatorProps) {
+  // Hide on mobile devices
+  if (isMobile) {
+    return null;
+  }
+
+  // Only show indicators for the first 7 sections (exclude footer)
+  const visibleSections = Math.min(totalSections - 1, sectionNames.length);
+
   return (
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-4">
-      {Array.from({ length: totalSections }).map((_, index) => (
+    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-4 hidden md:flex">
+      {Array.from({ length: visibleSections }).map((_, index) => (
         <button
           key={index}
           onClick={() => onNavigate(index)}

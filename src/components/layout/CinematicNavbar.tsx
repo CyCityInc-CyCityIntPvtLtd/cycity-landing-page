@@ -61,8 +61,9 @@ export function CinematicNavbar({ currentSection, onNavigate }: CinematicNavbarP
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled || currentSection > 0 ? 'glass-dark py-4' : 'py-6'
+          isScrolled || currentSection > 0 ? 'glass-dark py-3 lg:py-4' : 'py-4 lg:py-6'
         }`}
+        style={{ paddingTop: 'env(safe-area-inset-top, 1rem)' }}
       >
         <div className="container-custom flex items-center justify-between">
           {/* Logo */}
@@ -71,12 +72,16 @@ export function CinematicNavbar({ currentSection, onNavigate }: CinematicNavbarP
             className="flex items-center gap-2 group"
           >
             <div className="relative">
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <span className="font-orbitron font-bold text-primary-foreground text-xl">C</span>
+              <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/cycitypng.png" 
+                  alt="CyCity Logo" 
+                  className="w-6 h-6 lg:w-8 lg:h-8 object-contain transition-transform duration-300 group-hover:scale-110"
+                />
               </div>
-              <div className="absolute inset-0 rounded-lg bg-primary opacity-50 blur-lg group-hover:opacity-80 transition-opacity" />
+              <div className="absolute inset-0 rounded-lg bg-primary opacity-30 blur-lg group-hover:opacity-50 transition-opacity" />
             </div>
-            <span className="font-orbitron font-bold text-xl text-foreground">
+            <span className="font-orbitron font-bold text-lg lg:text-xl text-foreground">
               Cy<span className="text-primary">City</span>
             </span>
           </button>
@@ -168,9 +173,14 @@ export function CinematicNavbar({ currentSection, onNavigate }: CinematicNavbarP
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 lg:hidden pt-24 glass-dark"
+            className="fixed inset-0 z-40 lg:hidden glass-dark"
+            style={{ 
+              paddingTop: 'calc(env(safe-area-inset-top, 1rem) + 4rem)',
+              paddingBottom: 'env(safe-area-inset-bottom, 1rem)',
+              height: '100dvh'
+            }}
           >
-            <nav className="container-custom flex flex-col gap-6 py-8">
+            <nav className="container-custom flex flex-col gap-4 lg:gap-6 py-6 lg:py-8 h-full overflow-y-auto">
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.label}
@@ -178,7 +188,7 @@ export function CinematicNavbar({ currentSection, onNavigate }: CinematicNavbarP
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="font-orbitron text-2xl font-semibold text-foreground hover:text-primary transition-colors text-left"
+                  className="font-orbitron text-xl lg:text-2xl font-semibold text-foreground hover:text-primary transition-colors text-left"
                 >
                   {item.label}
                 </motion.button>
@@ -189,16 +199,16 @@ export function CinematicNavbar({ currentSection, onNavigate }: CinematicNavbarP
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navItems.length * 0.1 }}
-                className="border-t border-border pt-6 mt-2"
+                className="border-t border-border pt-4 lg:pt-6 mt-2"
               >
-                <span className="font-orbitron text-sm text-muted-foreground mb-4 block">Policies</span>
-                <div className="flex flex-col gap-3">
+                <span className="font-orbitron text-xs lg:text-sm text-muted-foreground mb-3 lg:mb-4 block">Policies</span>
+                <div className="flex flex-col gap-2 lg:gap-3">
                   {policyItems.map((item) => (
                     <Link
                       key={item.label}
                       to={item.href}
                       onClick={() => setIsMobileOpen(false)}
-                      className="text-lg text-muted-foreground hover:text-primary transition-colors"
+                      className="text-base lg:text-lg text-muted-foreground hover:text-primary transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -214,7 +224,7 @@ export function CinematicNavbar({ currentSection, onNavigate }: CinematicNavbarP
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: (navItems.length + 1) * 0.1 }}
-                className="inline-flex items-center justify-center px-8 py-4 font-orbitron text-lg font-semibold text-primary-foreground bg-primary rounded-lg mt-4"
+                className="inline-flex items-center justify-center px-6 lg:px-8 py-3 lg:py-4 font-orbitron text-base lg:text-lg font-semibold text-primary-foreground bg-primary rounded-lg mt-4"
               >
                 Get Started
               </motion.button>
