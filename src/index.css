@@ -483,3 +483,73 @@
 .animate-rotate-slow {
   animation: rotate-slow 20s linear infinite;
 }
+/* Additional Mobile Zoom Prevention */
+@media screen and (max-width: 768px) {
+  html {
+    /* Prevent zoom on iOS Safari */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Disable zoom */
+    zoom: 1;
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  
+  body {
+    /* Prevent zoom and scroll bounce */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Disable overscroll */
+    overscroll-behavior: none;
+    -webkit-overscroll-behavior: none;
+    /* Prevent zoom */
+    zoom: 1;
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Disable zoom gestures */
+  * {
+    -ms-touch-action: pan-x pan-y;
+    touch-action: pan-x pan-y;
+  }
+}
+
+/* iOS Safari specific zoom prevention */
+@supports (-webkit-touch-callout: none) {
+  html, body {
+    -webkit-text-size-adjust: 100% !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+  }
+  
+  /* Prevent double-tap zoom on iOS */
+  * {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+}
+
+/* Android Chrome specific zoom prevention */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  html, body {
+    -webkit-text-size-adjust: 100% !important;
+  }
+  
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}

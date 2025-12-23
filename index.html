@@ -2,11 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#0a0a0a" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
     <title>Cycity | Redefining Intelligence. Reimagining Tomorrow.</title>
     <meta name="description" content="Cycity International - An Indian deep-tech company advancing Artificial General Intelligence (AGI) through Quantum Technology. Engineering the intelligent foundation of tomorrow's India." />
     <meta name="author" content="Cycity International Pvt. Ltd." />
@@ -15,18 +17,67 @@
     <link rel="icon" type="image/png" href="/cycitypng.png" />
     <link rel="apple-touch-icon" href="/cycitypng.png" />
 
-    <meta property="og:title" content="Cycity | Redefining Intelligence. Reimagining Tomorrow." />
-    <meta property="og:description" content="An Indian deep-tech company advancing AGI through Quantum Technology." />
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://cycity.space" />
+    <meta property="og:title" content="Cycity | Redefining Intelligence. Reimagining Tomorrow." />
+    <meta property="og:description" content="Cycity International - An Indian deep-tech company advancing Artificial General Intelligence (AGI) through Quantum Technology. Engineering the intelligent foundation of tomorrow's India." />
+    <meta property="og:image" content="https://cycity.space/cycitypng.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Cycity" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cycity.space" />
+    <meta name="twitter:title" content="Cycity | Redefining Intelligence. Reimagining Tomorrow." />
+    <meta name="twitter:description" content="Cycity International - An Indian deep-tech company advancing Artificial General Intelligence (AGI) through Quantum Technology. Engineering the intelligent foundation of tomorrow's India." />
+    <meta name="twitter:image" content="https://cycity.space/cycitypng.png" />
     <meta name="twitter:site" content="@Cycity" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <!-- WhatsApp -->
+    <meta property="og:image:alt" content="Cycity - Redefining Intelligence. Reimagining Tomorrow." />
+    
+    <!-- Additional security and mobile optimization -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="index, follow" />
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Disable zoom on mobile devices -->
+    <script>
+      // Prevent zoom on mobile devices
+      document.addEventListener('gesturestart', function (e) {
+        e.preventDefault();
+      });
+      
+      document.addEventListener('gesturechange', function (e) {
+        e.preventDefault();
+      });
+      
+      document.addEventListener('gestureend', function (e) {
+        e.preventDefault();
+      });
+      
+      // Prevent double-tap zoom
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function (event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+      
+      // Prevent pinch zoom
+      document.addEventListener('touchmove', function (event) {
+        if (event.scale !== 1) { 
+          event.preventDefault(); 
+        }
+      }, { passive: false });
+    </script>
   </body>
 </html>

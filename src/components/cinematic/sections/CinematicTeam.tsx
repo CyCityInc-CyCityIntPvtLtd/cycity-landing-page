@@ -36,8 +36,8 @@ const team = [
     image: '/team/aditya.png',
   },
   {
-    name: 'Bharatkumar Koshti',
-    role: 'Chartered Accountant',
+    name: 'CA Bharatkumar Koshti',
+    role: 'CFO',
     image: '/team/kashi.png',
   },
 ];
